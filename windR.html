@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Weather</title>
+    <meta charset="utf-8">
+
+    <script src="http://code.jquery.com/jquery-1.7.min.js" ></script>
+    <script src="http://code.jquery.com/ui/1.7.0/jquery-ui.js" ></script>
+
+<script>
+
+    var weather = 'http://api.openweathermap.org/data/2.5/weather?lat=25&lon=90&APPID=d76aa8e069bb72be3605ff77299fb678';
+    $.ajax({
+      dataType: 'application/json',
+      url: weather,
+	  complete: function(data){
+		console.log(JSON.stringify(data));
+		console.log(data.responseText);
+		var myObj = JSON.parse(data.responseText);
+        console.log(myObj);
+    document.write('<b>Weather data received</b>');
+    document.write('<br>');
+	document.write('Speed :');
+    document.write(myObj.wind.speed);
+    document.write('<br>');
+	document.write('Degrees :');
+    document.write(myObj.wind.deg);
+    document.write('<br>');
+	
+	  },
+    
+      success: function(data){
+	    console.log('weather data received');
+	  }
+});
+
+</script>
+</body>
+</html>
